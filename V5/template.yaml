@@ -1,0 +1,68 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: API lambda Suggested Price V5
+Globals:
+  Function:
+    Timeout: 100
+
+Parameters:
+  Environment:
+    Type: String
+  BucketApp:
+    Type: String
+  DockerTag:
+    Type: String
+    Default: dev
+
+
+Resources:
+  SuggestedPriceV5API:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: !Sub ${Environment}
+      TracingEnabled: true
+
+  SuggestedPriceV5Function:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub SuggestedPriceV5-${Environment}
+      Tracing: Active
+      PackageType: Image
+      MemorySize: 5000
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - Version: '2012-10-17' # Policy Document
+          Statement:
+           - Effect: Allow
+             Action:
+              - s3:GetObjectAcl
+              - s3:GetObject
+              - s3:ListBucket
+             Resource:
+              - !Sub 'arn:aws:s3:::${BucketApp}'
+              - !Sub 'arn:aws:s3:::${BucketApp}/*'
+      Environment:
+        Variables:
+          MyBucket: !Sub ${BucketApp}
+
+      Events:
+        calculate:
+          Type: Api
+          Properties:
+            RestApiId: !Ref SuggestedPriceV5API
+            Path: /suggestedprice-v5
+            Method: post
+
+    Metadata:
+      DockerTag: !Ref DockerTag
+      DockerContext: ./project
+      Dockerfile: Dockerfile
+
+
+Outputs:
+  SuggestedPriceV5Function:
+    Description: "Suggested Price V5 Lambda Function ARN"
+    Value: !GetAtt SuggestedPriceV5Function.Arn
+  SuggestedPriceV5FunctionIamRole:
+    Description: "Implicit IAM Role created for Suggested Price V5 function"
+    Value: !GetAtt SuggestedPriceV5FunctionRole.Arn
