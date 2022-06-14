@@ -1,0 +1,80 @@
+prediction:
+    list_numeric_names_in_payload_to_float: ['antiquity',
+                                             'covered_area',
+                                             'rooms',
+                                             'bathrooms',
+                                             'parking']
+    list_feature_names_in_payload_to_bool: ['has_service_room',
+                                            'has_terrace',
+                                            'has_garden',
+                                            'has_elevator',
+                                            'has_full_kitchen',
+                                            'has_furniture',
+                                            'has_swimming_pool',
+                                            'has_gym',
+                                            'has_private_security',
+                                            'has_jacuzzi']
+    list_names_location_variables_to_float: ['x',
+                                             'y',
+                                             'z']
+    list_names_in_polygons_to_object: ['fid',
+                                       'grid_id',
+                                       'objectid',
+                                       'neigh_id',
+                                       'mun_id_cdmx',
+                                       'objectid_neighborhood']
+    list_names_in_polygons_to_group_rare_identifiers: ['grid_id',
+                                                       'fid',
+                                                       'neigh_id',
+                                                       'grid_objectid']
+    list_names_fid_variables: ['fid',
+                               'unidades',
+                               'antiquity_anio_media_construccion',
+                               'suma_superficie_terreno',
+                               'ratio_superficie_unidades',
+                               'count_rango_nivel_min']
+    list_names_grid_variables: ['grid_id',
+                                'superficie_construida',
+                                'superficie_total',
+                                'valor_suelo',
+                                'anio_media_grid',
+                                'unidades_por_sup_contruida',
+                                'unidades_por_sup_total',
+                                'valor_suelo_por_unidad',
+                                'sup_construida_sobre_sup_total']
+    luxury_feature_names: ['has_swimming_pool',
+                           'has_gym',
+                           'has_private_security',
+                           'has_jacuzzi']
+    selected_features: ['antiquity', 'covered_area', 'rooms', 'bathrooms', 'parking',
+                        'covered_area_rooms', 'covered_area_bathrooms', 'bathrooms_rooms',
+                        'perc_luxury_features', 'superficie_construida', 'superficie_total',
+                        'valor_suelo', 'anio_media_grid', 'unidades_por_sup_contruida',
+                        'unidades_por_sup_total', 'valor_suelo_por_unidad',
+                        'sup_construida_sobre_sup_total', 'unidades',
+                        'antiquity_anio_media_construccion', 'suma_superficie_terreno',
+                        'ratio_superficie_unidades', 'count_rango_nivel_min', 'x', 'y', 'z',
+                        'has_service_room', 'has_terrace',
+                        'has_garden', 'has_elevator', 'has_full_kitchen', 'has_furniture',
+                        'grid_id_modified',
+                        'fid_modified', 'mun_id_cdmx', 'class_past', 'neigh_id_modified',
+                        'grid_objectid_modified']
+    categoric_column_names_for_target_encoder: ['grid_id_modified',
+                                                'fid_modified',
+                                                'neigh_id_modified',
+                                                'grid_objectid_modified',
+                                                'mun_id_cdmx',
+                                                'class_past']
+    mape_for_min_max: 15.0
+    redshift-db:
+        name: homiemx
+        host: xxxxx
+        port: 5439
+        user: xxxxx
+        password: xxxxx
+    postgres-db:
+        port: 5432
+        name: webscraps
+        user: xxxxx
+        password: xxxxx
+        hostname: xxxxx

@@ -1,0 +1,18 @@
+WITH point AS (SELECT 1 AS entero, ST_SetSRID(ST_MakePoint({longitude}, {latitude}), 4326) AS geom)
+SELECT
+       point.entero,
+       state.nomgeo AS state,
+       alcaldias.cve_mun AS mun_id_cdmx,
+       neighborhoods.objectid,
+       neighborhoods.sett_name AS objectid_neighborhood,
+       colonias.id AS neigh_id,
+       colonias.nombre AS neigh_id_name,
+       grid.grid_id,
+       fid.fid
+FROM point
+    LEFT JOIN states_mex_wgs84 AS state ON st_within(point.geom, state.geom)
+    LEFT JOIN alcaldias_mex_wgs84 AS alcaldias ON st_within(point.geom, alcaldias.geom)
+    LEFT JOIN neighborhoods_mex_wgs84 AS neighborhoods ON st_within(point.geom, neighborhoods.geom)
+    LEFT JOIN neighborhoods_cdmx_wgs84 AS colonias ON st_within(point.geom, colonias.geom)
+    LEFT JOIN cadastral_data_cdmx_buildings AS fid ON st_within(point.geom, fid.geom)
+    LEFT JOIN mexico_country_gridded_2_5 AS grid ON st_within(point.geom, grid.geom)
