@@ -1,7 +1,7 @@
 source "/Users/$(whoami)/.zshrc"
 
 ENVIRONMENT=${1:-dev} # this variable will be used for docker tag and environment
-LAMBDA_NAME=suggestedpricev5function # must be equals into template.yaml in lower case
+LAMBDA_NAME=suggestedv5function # must be equals into template.yaml in lower case
 PROJECT_NAME=${LAMBDA_NAME}-${ENVIRONMENT}
 REGION=us-west-2
 BUCKET=$PROJECT_NAME-1

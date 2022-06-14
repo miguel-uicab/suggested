@@ -16,4 +16,4 @@ def get_environments():
     with open(f'environments.json') as file:
         environments = json.load(file)
 
-    return environments["SuggestedPriceV5Function"]
+    return environments["SuggestedV5Function"]

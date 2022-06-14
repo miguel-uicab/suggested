@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: API lambda Suggested Price V5
+Description: API lambda Suggested V5
 Globals:
   Function:
     Timeout: 100
@@ -16,16 +16,16 @@ Parameters:
 
 
 Resources:
-  SuggestedPriceV5API:
+  SuggestedV5API:
     Type: AWS::Serverless::Api
     Properties:
       StageName: !Sub ${Environment}
       TracingEnabled: true
 
-  SuggestedPriceV5Function:
+  SuggestedV5Function:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: !Sub SuggestedPriceV5-${Environment}
+      FunctionName: !Sub SuggestedV5-${Environment}
       Tracing: Active
       PackageType: Image
       MemorySize: 5000
@@ -49,8 +49,8 @@ Resources:
         calculate:
           Type: Api
           Properties:
-            RestApiId: !Ref SuggestedPriceV5API
-            Path: /suggestedprice-v5
+            RestApiId: !Ref SuggestedV5API
+            Path: /suggested-v5
             Method: post
 
     Metadata:
@@ -60,9 +60,9 @@ Resources:
 
 
 Outputs:
-  SuggestedPriceV5Function:
-    Description: "Suggested Price V5 Lambda Function ARN"
-    Value: !GetAtt SuggestedPriceV5Function.Arn
-  SuggestedPriceV5FunctionIamRole:
-    Description: "Implicit IAM Role created for Suggested Price V5 function"
-    Value: !GetAtt SuggestedPriceV5FunctionRole.Arn
+  SuggestedV5Function:
+    Description: "Suggested V5 Lambda Function ARN"
+    Value: !GetAtt SuggestedV5Function.Arn
+  SuggestedV5FunctionIamRole:
+    Description: "Implicit IAM Role created for Suggested V5 function"
+    Value: !GetAtt SuggestedV5FunctionRole.Arn

@@ -1,5 +1,5 @@
 {
-    "SuggestedPriceV5Function":{
-        "MyBucket": "suggestedpricev5function-dev-1"
+    "SuggestedV5Function":{
+        "MyBucket": "suggestedv5function-dev-1"
     }
 }
