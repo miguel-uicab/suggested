@@ -3,7 +3,7 @@ source "/Users/$(whoami)/.zshrc"
 ENVIRONMENT=${1:-dev} # this variable will be used for docker tag and environment
 LAMBDA_NAME=suggestedv5function # must be equals into template.yaml in lower case
 PROJECT_NAME=${LAMBDA_NAME}-${ENVIRONMENT}
-REGION=us-west-2
+REGION=us-east-2
 BUCKET=$PROJECT_NAME-1
 
 echo "Building image in $ENVIRONMENT environment"
